@@ -12,14 +12,25 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("Home Page")
-                    .font(.largeTitle)
-                    .padding()
-
-                Spacer()
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                RoutineView()
+                    .tabItem {
+                        Label("Routines", systemImage: "folder.fill")
+                    }
+                ExerciseLogView()
+                    .tabItem {
+                        Label("Exercises", systemImage: "square.and.arrow.up")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
             }
-            .navigationTitle("Home")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -32,23 +43,6 @@ struct ContentView: View {
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)
         }
-        .tabViewStyle(.automatic)
-        .overlay(
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                ExerciseLogView()
-                    .tabItem {
-                        Label("Workouts", systemImage: "list.bullet.rectangle")
-                    }
-                ProfileView()
-                    .tabItem {
-                        Label("Profile", systemImage: "person.crop.circle")
-                    }
-            }
-        )
     }
 }
 
