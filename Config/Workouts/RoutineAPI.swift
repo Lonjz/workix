@@ -72,7 +72,6 @@ class RoutineAPI {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error == nil {
                 print("✅ Routine saved successfully!")
-                // ✅ Step 2: Save exercises (sets, reps, exercise ID)
                 self.saveRoutineExercises(routine.exercises, forRoutineId: routine.id, completion: completion)
             } else {
                 print("❌ ERROR: Failed to create routine - \(error?.localizedDescription ?? "Unknown error")")
@@ -142,7 +141,6 @@ class RoutineAPI {
             if error == nil {
                 print("✅ Routine name updated successfully!")
                 
-                // ✅ Now update exercises
                 self.saveRoutineExercises(routine.exercises, forRoutineId: routine.id, completion: completion)
             } else {
                 print("❌ ERROR: Failed to update routine - \(error?.localizedDescription ?? "Unknown error")")
@@ -151,7 +149,6 @@ class RoutineAPI {
         }.resume()
     }
 
-    // ✅ Delete a routine
     func deleteRoutine(_ routineId: UUID, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: "\(self.supabaseURL)/routines?id=eq.\(routineId)") else { return }
 
