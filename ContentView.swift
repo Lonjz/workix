@@ -8,25 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = ExerciseView()
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
 
     var body: some View {
-        NavigationView {
-            List(viewModel.exercises) { exercise in
-                VStack(alignment: .leading) {
-                    Text(exercise.name)
-                        .font(.headline)
-                    Text("Main Muscle Group: \(exercise.mainMuscleGroup)")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    Text("Sub Muscles: \(exercise.subMuscleGroup.joined(separator: ", "))")
-                        .font(.footnote)
-                        .foregroundColor(.blue)
-                }
-                .padding(.vertical, 5)
+        NavigationStack {
+            VStack {
+                Text("Home Page")
+                    .font(.largeTitle)
+                    .padding()
+
+                Spacer()
             }
-            .navigationTitle("Exercises")
+            .navigationTitle("Home")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isDarkMode.toggle()
+                    }) {
+                        Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+                            .foregroundColor(isDarkMode ? .yellow : .blue)
+                    }
+                }
+            }
+            .preferredColorScheme(isDarkMode ? .dark : .light)
         }
+        .tabViewStyle(.automatic)
+        .overlay(
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                ExerciseLogView()
+                    .tabItem {
+                        Label("Workouts", systemImage: "list.bullet.rectangle")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
+            }
+        )
     }
 }
 
