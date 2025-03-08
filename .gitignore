@@ -89,4 +89,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-./Config/config.xcconfig
+config.xcconfig
