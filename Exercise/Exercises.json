@@ -1,0 +1,23 @@
+[
+    {
+        "id": "2885e5b4-cfb2-4ce4-a92f-d43c38725c33",
+        "name": "Bench Press",
+        "mainMuscleGroup": "Chest",
+        "subMuscleGroup": ["Triceps", "Shoulders"]
+    },
+    
+    { 
+        "id": "c9e0a98a-b9ec-4c91-806d-e56cdf589455",
+        "name": "Squat",
+        "mainMuscleGroup": "Legs",
+        "subMuscleGroup": ["Triceps", "Shoulders"]
+        
+    },
+    
+    {
+        "id": "919157c5-ba54-43b4-8df3-f5a888cde406", 
+        "name": "Deadlift",
+        "mainMuscleGroup": "Legs",
+        "subMuscleGroup": ["Triceps", "Shoulders"]
+    }
+]
